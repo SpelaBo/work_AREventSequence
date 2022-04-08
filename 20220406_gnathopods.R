@@ -127,7 +127,7 @@ phenogram(tree_morpho, morpho_all_gls[,20], add=T)
 
 
 
-
+par(mfrow=c(5,1))
 ## DTT locomotion whole genus----
 d1_loco<-dtt1(tree_morpho, morpho_all_gls[,c(1,4:6)], plot=F, nsim=1000, calculateMDIp=T)	
 ylim_loco<-par("yaxp")
@@ -158,14 +158,14 @@ polygon(c(r1_shape$r, rev(r1_shape$r)), c(r1_shape$upper, rev(r1_shape$lower)), 
 lines(r1_shape$r, r1_shape$data_curve, lwd=1)
 lines(r1_shape$r, r1_shape$central_curve, lty=2)
 
-## DTT sensoric whole genus----
+## DTT senzoric whole genus----
 d1_sensoric<-dtt1(tree_morpho, morpho_all_gls[,c(2,3)], plot=F, nsim=1000, calculateMDIp=T)	
 ylim_sensoric<-par("yaxp")
 # Compute the rank envelope after Murrell (2018)
 r1_sensoric<-rank_env_dtt(d1_sensoric, Plot=F)
 # Plot DTT --> body whole genus
 plot(c(0,1), ylim_sensoric[1:2], yaxp=c(ylim_sensoric[1],ylim_sensoric[2],ylim_sensoric[3]), type="n", xlab="relative time",
-     frame.plot=F, ylab="disparity", main="Locomotion - whole genus")  
+     frame.plot=F, ylab="disparity", main="senzoric - whole genus")  
 x_sensoric<-r1_sensoric$r
 y1_sensoric<-r1_sensoric$upper
 y2_sensoric<-r1_sensoric$lower
@@ -173,20 +173,20 @@ polygon(c(r1_sensoric$r, rev(r1_sensoric$r)), c(r1_sensoric$upper, rev(r1_sensor
 lines(r1_sensoric$r, r1_sensoric$data_curve, lwd=1)
 lines(r1_sensoric$r, r1_sensoric$central_curve, lty=2)
 
-## DTT shape whole genus----
-d1_shape<-dtt1(tree_morpho, morpho_all_gls[,c(7:11)], plot=F, nsim=1000, calculateMDIp=T)	
-ylim_shape<-par("yaxp")
+## DTT trophic whole genus----
+d1_gnatho<-dtt1(tree_morpho, morpho_all_gls[,20:21], plot=F, nsim=1000, calculateMDIp=T)	
+ylim_gnatho<-par("yaxp")
 # Compute the rank envelope after Murrell (2018)
-r1_shape<-rank_env_dtt(d1_shape, Plot=F)
+r1_gnatho<-rank_env_dtt(d1_gnatho, Plot=F)
 # Plot DTT --> body whole genus
-plot(c(0,1), ylim_shape[1:2], yaxp=c(ylim_shape[1],ylim_shape[2],ylim_shape[3]), type="n", xlab="relative time",
-     frame.plot=F, ylab="disparity", main="Shape - whole genus")  
-x_shape<-r1_shape$r
-y1_shape<-r1_shape$upper
-y2_shape<-r1_shape$lower
-polygon(c(r1_shape$r, rev(r1_shape$r)), c(r1_shape$upper, rev(r1_shape$lower)), col="grey60", border=NA)
-lines(r1_shape$r, r1_shape$data_curve, lwd=1)
-lines(r1_shape$r, r1_shape$central_curve, lty=2)
+plot(c(0,1), ylim_gnatho[1:2], yaxp=c(ylim_gnatho[1],ylim_gnatho[2],ylim_gnatho[3]), type="n", xlab="relative time",
+     frame.plot=F, ylab="disparity", main="trophic - whole genus")  
+x_gnatho<-r1_gnatho$r
+y1_gnatho<-r1_gnatho$upper
+y2_gnatho<-r1_gnatho$lower
+polygon(c(r1_gnatho$r, rev(r1_gnatho$r)), c(r1_gnatho$upper, rev(r1_gnatho$lower)), col="grey60", border=NA)
+lines(r1_gnatho$r, r1_gnatho$data_curve, lwd=1)
+lines(r1_gnatho$r, r1_gnatho$central_curve, lty=2)
 
 #########Analysis on subclades#########
 
@@ -283,8 +283,8 @@ for (i in 1:length(CLADES)) {
 DDT0_gnatho=vector("list", length(CLADES))
 RANK1_gnatho=vector("list", length(CLADES))
 for (i in 1:length(CLADES)) {
- # DDT0_gnatho[[i]]<-dtt1(CLADES_MORPHO[[i]], MORPHO_GLS[[i]][,20:21], plot=F, nsim=1000, calculateMDIp=T, Ylim = c(0,2.5))
- # ylim_gnatho<-par("yaxp")
+  DDT0_gnatho[[i]]<-dtt1(CLADES_MORPHO[[i]], MORPHO_GLS[[i]][,20:21], plot=F, nsim=1000, calculateMDIp=T, Ylim = c(0,2.5))
+  ylim_gnatho<-par("yaxp")
   #Compute the rank envelope after Murell
   RANK1_gnatho[[i]]<-rank_env_dtt(DDT0_gnatho[[i]], Plot=F)
   plot(c(0,1), c(0,3), yaxp=c(ylim_gnatho[1],ylim_gnatho[2],ylim_gnatho[3]), type="n", xlab="relative time", frame.plot=F, ylab="disparity", main="")
