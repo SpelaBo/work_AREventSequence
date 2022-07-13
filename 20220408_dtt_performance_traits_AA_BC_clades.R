@@ -82,3 +82,11 @@ for (i in 1:length(CLADES_double)) {
   lines(RANK1_gnatho_double[[i]]$r, RANK1_gnatho_double[[i]]$data_curve, lwd=1)
   lines(RANK1_gnatho_double[[i]]$r, RANK1_gnatho_double[[i]]$central_curve, lty=2)
 }
+
+
+par(mfrow=c(5,5), mar = c(1, 4, 1, 1), oma = c(1,0, 1, 1))
+PHENOGRSMS_all_traits=vector("list", 21)
+for (i in 1:21) {
+  PHENOGRSMS_all_traits[[i]] <- phenogram(CLADES_MORPHO_double[[2]], MORPHO_GLS_double[[2]][,i], ftype="off",
+                                          ylab=colnames(morpho_all_gls)[i])
+}

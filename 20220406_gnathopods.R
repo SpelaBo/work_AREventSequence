@@ -292,3 +292,58 @@ for (i in 1:length(CLADES)) {
   lines(RANK1_gnatho[[i]]$r, RANK1_gnatho[[i]]$data_curve, lwd=1)
   lines(RANK1_gnatho[[i]]$r, RANK1_gnatho[[i]]$central_curve, lty=2)
 }
+
+
+## Phenograms ####
+
+PHENOGRSMS_all_traits=vector("list", length(CLADES))
+fancyTree(tree_morpho_l,type="scattergram",X=morpho_all_gls[,c(1,2,7,20)], label="off", ftype="off")
+
+par(mfrow=c(5,5), mar = c(1, 4, 1, 1), oma = c(1,0, 1, 1))
+PHENOGRSMS_all_traits=vector("list", 21)
+for (i in 1:21) {
+  PHENOGRSMS_all_traits[[i]] <- phenogram(tree_morpho, morpho_all_gls[,i], ftype="off",
+                                          ylab=colnames(morpho_all_gls)[i])
+  abline(v=c(17,27,37), col = brewer.pal(5, "Blues"))
+}
+
+
+dev.off()
+
+
+par(mfrow=c(5,5), mar = c(1, 4, 1, 1), oma = c(1,0, 1, 1))
+PHENOGRSMS_all_traits=vector("list", 21)
+for (i in 1:21) {
+  PHENOGRSMS_all_traits[[i]] <- phenogram(CLADES_MORPHO[[5]], MORPHO_GLS[[5]][,i], ftype="off",
+                                          ylab=colnames(morpho_all_gls)[i])
+  abline(v=c(17,27,37), col = brewer.pal(5, "Blues"))
+}
+tree_morpho_fix<-di2multi(tree_morpho)
+nodeA1 <- findMRCA(tree_morpho, c("N_malagorae","N_spn_ND348","N_spn_ND441","N_brachytelson","N_spn_NC767","N_spn_ND302",
+                                  "N_illidzensis","N_sp_T262")
+)
+
+nodeA1=c(626)
+#pontic
+nodeA2=c(600)
+#south dinaric
+nodeB=c(467)
+#west balkan
+nodeC=c(425)
+#north dinaric
+nodeE=c(342)
+
+tree_morpho_paint<-paintSubTree(tree_morpho,node=nodeA1,state="2",anc.state="1")
+tree_morpho_paint<-paintSubTree(tree_morpho,node=nodeA2,state="3", stem = FALSE)
+tree_morpho_paint<-paintSubTree(tree_morpho,node=nodeB,state="4")
+tree_morpho_paint<-paintSubTree(tree_morpho,node=nodeC,state="5")
+tree_morpho_paint<-paintSubTree(tree_morpho,node=nodeE,state="6")
+cols<-c("black","blue","red", "yellow", "green","gray")
+names(cols)<-1:6
+plotSimmap(tree_morpho_paint,cols,pts=F,lwd=3,node.numbers=T)
+par(mfrow=c(5,5), mar = c(1, 4, 1, 1), oma = c(1,0, 1, 1))
+PHENOGRSMS_all_traits=vector("list", 21)
+for (i in 1:21) {
+  PHENOGRSMS_all_traits[[i]] <- phenogram(tree_morpho_paint, morpho_all_gls[,i], ftype="off",
+                                          ylab=colnames(morpho_all_gls)[i], colors = cols)
+}
