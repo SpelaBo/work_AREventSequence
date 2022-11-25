@@ -1,12 +1,14 @@
 ### analiza diverzifikacije, test 1 ####
 
 #### Data ####
+
 # final tree, max credibility tree, mean heights
 tree_mean <- read.nexus("./data/20220325_niphargus_calibrated_edit.tree")
 tree_mean <- drop.tip(tree_mean, "Nl_nolli")
+tree_mean <- force.ultrametric(tree_mean,method="extend")
 is.ultrametric(tree_mean)
-tree_mean <- force.ultrametric(tree_mean)
-
+plot(tree_mean, show.tip.label=F)
+axisPhylo()
 # Morphology, continuous
 morphology <- read_excel("./data/morphology.xlsx", na = "NA")
 morphology <- as.data.frame(morphology)
@@ -24,7 +26,8 @@ morphology_noNA <- morphology[complete.cases(morphology), ]
 to_keep_morpho=rownames(morphology_noNA)
 tree_morpho=keep.tip(tree_mean, to_keep_morpho)
 name.check(tree_morpho,morphology_noNA) 
-
+is.ultrametric(tree_morpho)
+tree_morpho <- force.ultrametric(tree_morpho)
 tree_morpho_l <- ladderize(tree_morpho, right = F)
 
 # Phylogenetically corrected GLS
@@ -40,6 +43,8 @@ morpho_all_gls=cbind(body_length, residuals_gls)
 # define subclades
 #pannonian
 speciesA1=c("N_ablaskiri","N_ambulator","N_aquilex_T81","N_aquilex_T94","N_bihorensis_A","N_bihorensis_B","N_carniolicus","N_cf_tauri_3","N_cvetkovi","N_daniali","N_dimorphus","N_dobati","N_fongi","N_gebhardti","N_inermis","N_pontoruffoi","N_racovitzai","N_sp_A_iz_wolfi","N_spn_Gumbrini","N_spn_Huda_Luknja","N_spn_NC561","N_spn_NC575","N_spn_NC576","N_spn_NC580","N_spn_NC586","N_spn_NC613","N_spn_NC630","N_spn_NC660","N_spn_NC702","N_spn_NC707","N_spn_NC711","N_spn_NC716","N_spn_NC718","N_spn_NC724","N_spn_NC850","N_spn_ND053","N_spn_ND113","N_spn_ND209","N_spn_ND429","N_spn_ND565","N_spn_ND770","N_spn_Podutik","N_spn_Sbirkovska_cave","N_spn_Sitarjevec","N_spn_Sukhaja_balka","N_spn_tauri_Brezno3src","N_tauri","N_vadimi","N_wolfi_A")
+#pannonian-vadimi
+speciesA1_novadimi=c("N_ablaskiri","N_ambulator","N_aquilex_T81","N_aquilex_T94","N_bihorensis_A","N_bihorensis_B","N_carniolicus","N_cf_tauri_3","N_cvetkovi","N_daniali","N_dimorphus","N_dobati","N_fongi","N_gebhardti","N_inermis","N_pontoruffoi","N_racovitzai","N_sp_A_iz_wolfi","N_spn_Gumbrini","N_spn_Huda_Luknja","N_spn_NC561","N_spn_NC575","N_spn_NC576","N_spn_NC580","N_spn_NC586","N_spn_NC613","N_spn_NC630","N_spn_NC660","N_spn_NC702","N_spn_NC707","N_spn_NC711","N_spn_NC716","N_spn_NC718","N_spn_NC724","N_spn_NC850","N_spn_ND053","N_spn_ND113","N_spn_ND209","N_spn_ND429","N_spn_ND565","N_spn_ND770","N_spn_Podutik","N_spn_Sbirkovska_cave","N_spn_Sitarjevec","N_spn_Sukhaja_balka","N_spn_tauri_Brezno3src","N_tauri","N_wolfi_A")
 #pontic
 speciesA2=c("C_paradoxa","N_aberrans","N_alpinus","N_andropus","N_aquilex_B","N_armatus","N_bajuvaricus","N_barbatus","N_carpathicus","N_danielopoli","N_decui","N_dissonus","N_galvagnii","N_grandii","N_italicus","N_karkabounasi","N_labacensis_A","N_labacensis_B","N_lattingerae","N_longidactylus","N_microcerberus_A","N_microcerberus_B","N_minor","N_moldavicus_cf","N_multipennatus","N_parapupetta","N_pectinicauda","N_petrosani","N_pupetta","N_serbicus","N_similis","N_sp_T110","N_spn_Arkadi","N_spn_Jelovica","N_spn_NC217","N_spn_NC624","N_spn_NC786","N_spn_ND182","N_spn_ND188","N_spn_ND211","N_spn_ND213","N_spn_ND216","N_spn_ND301","N_spn_ND426","N_spn_ND439","N_spn_ND540","N_spn_ND605","N_spn_ND669","N_spn_ND670","N_spn_ND705","N_spn_ND924","N_spn_Vodni_kevder","N_strouhali","N_tamaninii","N_transitivus","N_transsylvanicus_A","N_transsylvanicus_B","N_transsylvanicus_C","N_wolfi_B")
 #south dinaric
@@ -132,8 +137,10 @@ sens_b_aic
 
 # ancestral states ####
 ## We want the ancestral states values at each nodes:
-ASR_gnato_b<-estim(tree_b, data_b[,20:21], model_OU_gnato_b, asr=TRUE)
-comb_gnato_b <- rbind(data_b[,20:21],ASR_gnato_b$estim)
+data_b <- data_b[,c(1:11,20:21)]
+data_b_mrca <- rbind(data_b,"41"=ASR_mrca_clades[rownames(ASR_mrca_clades)==mrcaB])
+ASR_gnato_b<-estim(tree_b, data_b_mrca[,colnames(data_b_mrca) %in% c("gpI6_size","gpII6_size")], model_OU_gnato_b, asr=TRUE)
+comb_gnato_b <- rbind(data_b[,c(gpI6_size,gpII6_size)],ASR_gnato_b$estim)
 
 ASR_body_b<-estim(tree_b, data_b[,c(7:11)], model_OU_body_b, asr=TRUE)
 comb_body_b <- rbind(data_b[,c(7:11)],ASR_body_b$estim)

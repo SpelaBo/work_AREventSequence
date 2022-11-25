@@ -1,0 +1,186 @@
+$body_traits
+$body_traits[[1]]
+-- Akaike weights -- 
+              Rank  AIC diff       wi     AICw
+OUM 5            1 1129  0.0 1.00e+00 1.00e+00
+BMM default 2    2 1150 20.5 3.52e-05 3.52e-05
+OU1 4            3 1153 23.3 8.81e-06 8.81e-06
+BM1 default 1    4 1214 84.7 0.00e+00 0.00e+00
+ACDC 3           5 1216 86.7 0.00e+00 0.00e+00
+
+$body_traits[[2]]
+
+-- Summary results -- 
+LogLikelihood: 	 -557.7283 
+AIC: 	 1129.457 
+AICc: 	 1129.786 
+7 parameters 
+
+Estimated theta values 
+______________________ 
+             
+1   0.4749064
+A1  0.9989036
+A2  0.7148862
+C  -2.1416171
+B  -0.4070292
+
+ML alpha values 
+______________________ 
+         
+ 0.186929
+
+ML sigma values 
+______________________ 
+          
+ 0.6095673
+
+
+$loco_traits
+$loco_traits[[1]]
+-- Akaike weights -- 
+              Rank  AIC   diff       wi     AICw
+OUM 5            1 1080   0.00 1.00e+00 8.25e-01
+BMM default 2    2 1083   3.11 2.11e-01 1.75e-01
+OU1 4            3 1114  33.49 5.33e-08 4.40e-08
+BM1 default 1    4 1207 127.28 0.00e+00 0.00e+00
+ACDC 3           5 1209 129.28 0.00e+00 0.00e+00
+
+$loco_traits[[2]]
+
+-- Summary results -- 
+LogLikelihood: 	 -533.061 
+AIC: 	 1080.122 
+AICc: 	 1080.451 
+7 parameters 
+
+Estimated theta values 
+______________________ 
+               
+1  -0.491972082
+A1 -0.119456821
+A2  0.003320592
+C   1.569255429
+B   0.339844610
+
+ML alpha values 
+______________________ 
+          
+ 0.2412341
+
+ML sigma values 
+______________________ 
+          
+ 0.6559541
+
+
+$sens_traits
+$sens_traits[[1]]
+-- Akaike weights -- 
+              Rank  AIC  diff       wi     AICw
+OUM 5            1 1097   0.0 1.00e+00 1.00e+00
+BMM default 2    2 1122  25.3 3.14e-06 3.14e-06
+OU1 4            3 1132  35.2 2.28e-08 2.28e-08
+BM1 default 1    4 1298 201.2 0.00e+00 0.00e+00
+ACDC 3           5 1300 203.2 0.00e+00 0.00e+00
+
+$sens_traits[[2]]
+
+-- Summary results -- 
+LogLikelihood: 	 -541.3477 
+AIC: 	 1096.695 
+AICc: 	 1097.025 
+7 parameters 
+
+Estimated theta values 
+______________________ 
+             
+1  -0.4204488
+A1 -0.1553941
+A2  0.1796915
+C   1.0912186
+B   0.3312400
+
+ML alpha values 
+______________________ 
+          
+ 0.3551594
+
+ML sigma values 
+______________________ 
+          
+ 0.9742176
+
+
+$trophic_traits
+$trophic_traits[[1]]
+-- Akaike weights -- 
+              Rank  AIC  diff       wi     AICw
+OUM 5            1 1123   0.0 1.000000 0.999834
+OU1 4            2 1141  17.4 0.000166 0.000166
+BMM default 2    3 1163  40.1 0.000000 0.000000
+BM1 default 1    4 1245 121.4 0.000000 0.000000
+ACDC 3           5 1247 123.4 0.000000 0.000000
+
+$trophic_traits[[2]]
+
+-- Summary results -- 
+LogLikelihood: 	 -554.5844 
+AIC: 	 1123.169 
+AICc: 	 1123.498 
+7 parameters 
+
+Estimated theta values 
+______________________ 
+             
+1  -0.4210505
+A1 -0.1168953
+A2  0.0593323
+C   1.2489994
+B   0.2830020
+
+ML alpha values 
+______________________ 
+          
+ 0.2106733
+
+ML sigma values 
+______________________ 
+          
+ 0.6610449
+
+
+$trophic_traits2
+$trophic_traits2[[1]]
+-- Akaike weights -- 
+              Rank  AIC  diff       wi     AICw
+OU1 4            1 1084  0.00 1.00e+00 6.44e-01
+BMM default 2    2 1086  1.30 5.22e-01 3.36e-01
+OUM 5            3 1091  7.01 3.00e-02 1.93e-02
+BM1 default 1    4 1104 19.66 5.38e-05 3.47e-05
+ACDC 3           5 1106 21.66 1.98e-05 1.28e-05
+
+$trophic_traits2[[2]]
+
+-- Summary results -- 
+LogLikelihood: 	 -539.184 
+AIC: 	 1084.368 
+AICc: 	 1084.438 
+3 parameters 
+
+Estimated theta values 
+______________________ 
+              
+OU1 -0.1725143
+
+ML alpha values 
+______________________ 
+           
+ 0.05667868
+
+ML sigma values 
+______________________ 
+          
+ 0.2591661
+
+

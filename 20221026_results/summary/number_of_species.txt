@@ -1,0 +1,5 @@
+A1_pannonian :  30
+A2_pontic :  31
+B_south_dinaric :  49
+C_west_balkan :  46
+whole genus: 348

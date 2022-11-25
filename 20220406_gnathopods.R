@@ -10,9 +10,11 @@ library(ggplot2)
 library(grid)
 library(gridExtra)
 library(dplyr)
-library(plyr)
+
 
 library(motmot)
+library(parallel)
+
 
 #needed for DTT envelope test after Murrell (2018)
 library(devtools)

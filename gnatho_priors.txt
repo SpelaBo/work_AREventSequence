@@ -1,0 +1,16 @@
+###############################################
+
+# Prior block chosen by BAMMtools::setBAMMpriors
+
+expectedNumberOfShifts = 1.0
+
+betaInitPrior = 1.48123638222081
+
+betaShiftPrior = 0.0242480606478144
+
+useObservedMinMaxAsTraitPriors = 1
+
+#### End Prior block
+######################
+
+
